@@ -1112,7 +1112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198172334979872430, guid: 1d0e4f1499cebaa4992504fcb17e8871, type: 3}
       propertyPath: randomSeed
-      value: -196597296
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198172334979872430, guid: 1d0e4f1499cebaa4992504fcb17e8871, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
