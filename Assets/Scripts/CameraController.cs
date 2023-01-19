@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(cameraRotation.x - verticalLookInput * rotateSpeed * Time.deltaTime, cameraRotation.y, cameraRotation.z));
         }
-        Debug.Log(transform.rotation.eulerAngles);
+     //   Debug.Log(transform.rotation.eulerAngles);
     }
 
     public void Look(InputAction.CallbackContext context)
