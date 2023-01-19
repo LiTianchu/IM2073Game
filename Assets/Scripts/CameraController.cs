@@ -15,13 +15,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         Vector3 cameraRotation = transform.rotation.eulerAngles;
         float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
 
@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(cameraRotation.x - verticalLookInput * rotateSpeed * Time.deltaTime, cameraRotation.y, cameraRotation.z));
         }
-        Debug.Log(transform.rotation.eulerAngles);
+        //   Debug.Log(transform.rotation.eulerAngles);
     }
 
     public void Look(InputAction.CallbackContext context)
@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
 
         //   Debug.Log(context.ReadValue<Vector2>());
 
-       // horizontalLookInput = context.ReadValue<Vector2>().x;
+        // horizontalLookInput = context.ReadValue<Vector2>().x;
         verticalLookInput = context.ReadValue<Vector2>().y;
         //  movement = transform.TransformDirection(movement);
 
