@@ -10,12 +10,12 @@ public class WeaponController : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private AnimationClip attackClip;
-    [SerializeField]
-    private int rotationAngle;
-    [SerializeField]
-    private float rotateSpeed;
+    //[SerializeField]
+    //private int rotationAngle;
+    //[SerializeField]
+    //private float rotateSpeed;
 
-    private float verticalLookInput;
+    //private float verticalLookInput;
 
 
     // Start is called before the first frame update
@@ -27,13 +27,13 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 weaponRotation = transform.rotation.eulerAngles;
-        float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
+        //Vector3 weaponRotation = transform.rotation.eulerAngles;
+        //float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
 
-        if (angle >= 360 - rotationAngle || angle <= 0 + rotationAngle)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(weaponRotation.x - verticalLookInput * rotateSpeed * Time.deltaTime, weaponRotation.y, weaponRotation.z));
-        }
+        //if (angle >= 360 - rotationAngle || angle <= 0 + rotationAngle)
+        //{
+        //    transform.rotation = Quaternion.Euler(new Vector3(weaponRotation.x - verticalLookInput * rotateSpeed * Time.deltaTime, weaponRotation.y, weaponRotation.z));
+        //}
     }
 
     public void Attack(InputAction.CallbackContext context)

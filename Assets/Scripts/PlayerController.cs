@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpPower;
     [SerializeField]
+    private float jumpSpeed;
+    [SerializeField]
     private float rotateSpeed;
     [SerializeField]
     private float gravity;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private float horizontalLookInput;
     private float verticalLookInput;
+    private 
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +33,48 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (cc.isGrounded)
+        //{
+        //    //doubleJumpAvailable = true;
+        //    timeToStopBeingLenient = Time.time + jumpTimeLeniency;
+        //    //Set the movement direction to be the received input, set y to 0 since we are on the ground
+        //    moveDirection = new Vector3(leftRightInput, 0, forwardBackwardInput);
+
+        //    //Set the move direction in relation to the transform
+        //    moveDirection = transform.TransformDirection(moveDirection);
+        //    moveDirection = moveDirection * moveSpeed;
+
+        //    if (jumpPressed)
+        //    {
+        //        movement.y = jumpPower;
+        //    }
+        //}
+        //else
+        //{
+        //    moveDirection = new Vector3(leftRightInput * moveSpeed, moveDirection.y, forwardBackwardInput * moveSpeed);
+        //    moveDirection = transform.TransformDirection(moveDirection);
+
+        //    //to give time leniency for ungrounded player to jump
+        //    if (jumpPressed && Time.time < timeToStopBeingLenient)
+        //    {
+        //        moveDirection.y = jumpPower;
+        //    }
+        //    else if (jumpPressed && doubleJumpAvailable)
+        //    {
+        //        moveDirection.y = jumpPower;
+        //        doubleJumpAvailable = false;
+
+        //    }
+        //}
+
         movement.y -= gravity * Time.deltaTime;
         //stop gravity from stacking
         if (cc.isGrounded && movement.y < 0)
         {
             movement.y = -0.3f;
         }
-
-        cc.Move(transform.TransformDirection(movement) * walkSpeed * Time.deltaTime);
+        Vector3 transformedMovement = transform.TransformDirection(movement);
+        cc.Move(new Vector3(transformedMovement.x * walkSpeed * Time.deltaTime,transformedMovement.y * jumpSpeed * Time.deltaTime,transformedMovement.z * walkSpeed*Time.deltaTime));
         Vector3 playerRotation = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(new Vector3(playerRotation.x, playerRotation.y + horizontalLookInput * rotateSpeed * Time.deltaTime, playerRotation.z));
         //  movement = transform.TransformDirection(movement);
@@ -45,8 +82,13 @@ public class PlayerController : MonoBehaviour
 
     public void Walk(InputAction.CallbackContext context)
     {
-
-        movement = context.ReadValue<Vector3>();
+        if (cc.isGrounded)
+        {
+            movement = context.ReadValue<Vector3>();
+        }
+        else {
+            movement = new Vector3(context.ReadValue<Vector3>().x, movement.y, context.ReadValue<Vector3>().z);
+        }
         //     movement = transform.TransformDirection(movement);
 
     }
@@ -61,5 +103,11 @@ public class PlayerController : MonoBehaviour
         //  movement = transform.TransformDirection(movement);
 
 
+    }
+
+    public void Jump(InputAction.CallbackContext context) {
+        if (context.performed && cc.isGrounded) {
+            movement.y = jumpPower;
+        }
     }
 }
