@@ -15,13 +15,14 @@ public class PlayerController : MonoBehaviour
     private float rotateSpeed;
     [SerializeField]
     private float gravity;
+    [SerializeField]
+    private int healthPoint;
 
     private CharacterController cc;
     private Rigidbody rb;
     private Vector3 movement;
     private float horizontalLookInput;
     private float verticalLookInput;
-    private 
 
     // Start is called before the first frame update
     void Start()
@@ -109,5 +110,33 @@ public class PlayerController : MonoBehaviour
         if (context.performed && cc.isGrounded) {
             movement.y = jumpPower;
         }
+    }
+
+    // On being hit by enemies
+    bool isColliding; // To prevent multiple OnTriggerEnter in one instance
+    void OnTriggerEnter(Collider collision)
+    {
+        if (isColliding == true) return;
+        isColliding = true;
+
+        if (collision.gameObject.tag == "Enemy_Attack")
+        {
+            Debug.Log("Enemy_Attack");
+            if (collision.gameObject.name == "Spider_Fuga_Red_AttackBox")
+            {
+                Debug.Log("Spider_Fuga_Red_AttackBox");
+                healthPoint -= 5;
+                Debug.Log(healthPoint);
+            }
+        }
+
+        StartCoroutine(Reset());
+    }
+
+    // Used in preventing multiple OnTriggerEnter in one instance
+    IEnumerator Reset()
+    {
+        yield return new WaitForEndOfFrame();
+        isColliding = false;
     }
 }
