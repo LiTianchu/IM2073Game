@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Spider_Fuga_Red_Controller : MonoBehaviour
 {
-    public GameObject spiderAttackHitbox;
+    public BoxCollider spiderAttackHitbox;
 
     // Start is called before the first frame update
     void Start()
     {
-        spiderAttackHitbox = GetComponentInChildren<GameObject>(false);
+        spiderAttackHitbox = GetComponent<BoxCollider>();
 
-        spiderAttackHitbox.SetActive(false);
+        spiderAttackHitbox.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,12 +23,12 @@ public class Spider_Fuga_Red_Controller : MonoBehaviour
     // Spider attack animation, activate hitbox
     void Attacking()
     {
-        spiderAttackHitbox.SetActive(true);
+        spiderAttackHitbox.enabled = true;
     }
 
     // Spider attack animation, deactivate hitbox
     void StopAttacking()
     {
-        spiderAttackHitbox.SetActive(false);
+        spiderAttackHitbox.enabled = false;
     }
 }

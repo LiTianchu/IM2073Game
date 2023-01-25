@@ -42,6 +42,7 @@ public class WeaponSelection : MonoBehaviour
             {
                 weaponIconObjs[i].GetComponent<Icon>().SetEnable(true);
                 weaponObjs[i].SetActive(true);
+                weaponObjs[i].GetComponentInChildren<WeaponController>().isAttacking = false;
             }
             else
             {

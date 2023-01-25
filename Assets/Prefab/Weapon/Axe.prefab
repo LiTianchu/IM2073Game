@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4159672793982870440}
-  - component: {fileID: 4159672793982870438}
-  - component: {fileID: 4159672793982870439}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Weapon_Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,76 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4159672793982870438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4159672793982870441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7b2d33aa52bf64d85e6e5749adde3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 4159672795934982182}
-  attackClip: {fileID: 7400000, guid: 8ead27530dc0ca44eb6aeb63fb4b9446, type: 2}
-  rotationAngle: 70
-  rotateSpeed: 0
---- !u!114 &4159672793982870439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4159672793982870441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 79fa63b9cb286ec429d4d0d3a45b1962, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5f2aa49f-b1f8-4e49-adc1-4a25135c41d6
-    m_ActionName: Player/Movement[/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7f5bc86c-d08c-4577-8cfa-070627ccc268
-    m_ActionName: Player/Look[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4159672793982870438}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a94658cc-1f29-4723-ab2f-b5d909ea4528
-    m_ActionName: Player/Attack[/Mouse/leftButton]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1001 &4159672795934982189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,9 +47,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7990699710095680119, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4159672795934982182}
+    - target: {fileID: 7990699710095680119, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
+      propertyPath: weaponHitbox
+      value: 
+      objectReference: {fileID: 8085097839209623805}
     - target: {fileID: 8203073568141072114, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
       propertyPath: m_Name
       value: Ax_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203073568141072114, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
+      propertyPath: m_TagString
+      value: Weapon_Axe
       objectReference: {fileID: 0}
     - target: {fileID: 8835212951578315848, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
       propertyPath: m_RootOrder
@@ -211,3 +151,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &8085097839209623805 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5300219972156502224, guid: 6cd1ac9652a50da4485a86492f47c63d, type: 3}
+  m_PrefabInstance: {fileID: 4159672795934982189}
+  m_PrefabAsset: {fileID: 0}
