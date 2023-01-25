@@ -10,6 +10,9 @@ public class WeaponController : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private AnimationClip attackClip;
+
+    private bool weaponSelected;
+    private bool isAttacking;
     //[SerializeField]
     //private int rotationAngle;
     //[SerializeField]
@@ -27,6 +30,13 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.gameObject.activeSelf)
+        {
+            weaponSelected = true;
+        }
+        else {
+            weaponSelected = false;
+        }
         //Vector3 weaponRotation = transform.rotation.eulerAngles;
         //float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
 
@@ -38,11 +48,13 @@ public class WeaponController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.canceled)
+        if (context.performed && isAttacking==false)
         {
             StartCoroutine(PerformAttack());
         }
     }
+
+
 
     //public void Look(InputAction.CallbackContext context)
     //{
@@ -59,7 +71,9 @@ public class WeaponController : MonoBehaviour
     IEnumerator PerformAttack()
     {
         anim.SetBool("IsAttacking", true);
-        yield return new WaitForSeconds(attackClip.length);
+        isAttacking = true;
+        yield return new WaitForSeconds(attackClip.length + 0.1f);
         anim.SetBool("IsAttacking", false);
+        isAttacking = false;
     }
 }
