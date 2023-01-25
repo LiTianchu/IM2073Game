@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Objective
   - Enemy_Attack
+  - Weapon_Axe
+  - Weapon_Hammer
+  - Weapon_Sword
   layers:
   - Default
   - TransparentFX
