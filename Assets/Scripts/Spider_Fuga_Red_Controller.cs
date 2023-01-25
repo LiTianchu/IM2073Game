@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Spider_Fuga_Red_Controller : MonoBehaviour
 {
+    public GameObject attackBoxGameObject;
     public BoxCollider spiderAttackHitbox;
 
     // Start is called before the first frame update
     void Start()
     {
-        spiderAttackHitbox = GetComponent<BoxCollider>();
+        spiderAttackHitbox = GameObject.Find(attackBoxGameObject.name).GetComponent<BoxCollider>();
 
         spiderAttackHitbox.enabled = false;
     }
