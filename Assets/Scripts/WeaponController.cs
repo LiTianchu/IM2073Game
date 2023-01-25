@@ -12,7 +12,7 @@ public class WeaponController : MonoBehaviour
     private AnimationClip attackClip;
 
     private bool weaponSelected;
-    private bool isAttacking;
+    public bool isAttacking;
     //[SerializeField]
     //private int rotationAngle;
     //[SerializeField]
@@ -21,10 +21,14 @@ public class WeaponController : MonoBehaviour
     //private float verticalLookInput;
 
 
+    // Storing hitbox collider
+    public BoxCollider weaponHitbox;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        weaponHitbox = GetComponent<BoxCollider>();
+        weaponHitbox.enabled = false;
     }
 
     // Update is called once per frame
@@ -54,7 +58,17 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    // Attack anim enable hitbox
+    void Attacking()
+    {
+        weaponHitbox.enabled = true;
+    }
 
+    // Attack anim disable hitbox
+    void Stop_Attacking()
+    {
+        weaponHitbox.enabled = false;
+    }
 
     //public void Look(InputAction.CallbackContext context)
     //{
