@@ -1979,6 +1979,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 35b76fec-93c5-45e3-8c0d-606daa96d4e7
     m_ActionName: Player/SelectRightWeapon[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11aa3f3d-e596-45b5-9941-be758d125499
+    m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1999,6 +2003,7 @@ MonoBehaviour:
   rotateSpeed: 350
   rotationAngle: 70
   rotationLockTime: 2
+  pc: {fileID: 1949242362}
 --- !u!81 &335842398
 AudioListener:
   m_ObjectHideFlags: 0
@@ -10771,6 +10776,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 35b76fec-93c5-45e3-8c0d-606daa96d4e7
     m_ActionName: Player/SelectRightWeapon[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11aa3f3d-e596-45b5-9941-be758d125499
+    m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
