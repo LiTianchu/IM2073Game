@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     private float rotationAngle;
     [SerializeField]
     private float rotationLockTime;
+    [SerializeField]
+    private PlayerController pc;
 
     private float verticalLookInput;
     private float timePassed;
@@ -29,7 +31,7 @@ public class CameraController : MonoBehaviour
     {
         timePassed += Time.deltaTime;
 
-        if (timePassed >= timeToEnableRotation) {
+        if (timePassed >= timeToEnableRotation && !pc.isTalking) {
             Vector3 cameraRotation = transform.rotation.eulerAngles;
             float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
 
