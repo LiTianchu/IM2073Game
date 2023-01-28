@@ -10,7 +10,7 @@ public class Spider_Fuga_Red_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spiderAttackHitbox = GameObject.Find(attackBoxGameObject.name).GetComponent<BoxCollider>();
+        spiderAttackHitbox = attackBoxGameObject.GetComponent<BoxCollider>();
 
         spiderAttackHitbox.enabled = false;
     }

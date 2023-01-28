@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     private float gravity;
     [SerializeField]
     private int healthPoint;
-
+    
+    public bool isTalking { get; set; }
     private CharacterController cc;
     private Rigidbody rb;
     private Vector3 movement;
     private float horizontalLookInput;
     private float verticalLookInput;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -76,8 +78,11 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 transformedMovement = transform.TransformDirection(movement);
         cc.Move(new Vector3(transformedMovement.x * walkSpeed * Time.deltaTime,transformedMovement.y * jumpSpeed * Time.deltaTime,transformedMovement.z * walkSpeed*Time.deltaTime));
-        Vector3 playerRotation = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(new Vector3(playerRotation.x, playerRotation.y + horizontalLookInput * rotateSpeed * Time.deltaTime, playerRotation.z));
+        if (!isTalking)
+        {
+            Vector3 playerRotation = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(new Vector3(playerRotation.x, playerRotation.y + horizontalLookInput * rotateSpeed * Time.deltaTime, playerRotation.z));
+        }
         //  movement = transform.TransformDirection(movement);
     }
 
