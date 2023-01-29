@@ -126,12 +126,16 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy_Attack")
         {
-            Debug.Log("Enemy_Attack");
             if (collision.gameObject.name == "Spider_Fuga_Red_AttackBox")
             {
-                Debug.Log("Spider_Fuga_Red_AttackBox");
                 healthPoint -= 5;
-                Debug.Log(healthPoint);
+                Debug.Log("Spider_Fuga_Red_AttackBox: " + healthPoint);
+            }
+
+            if (collision.gameObject.name == "Boximon_AttackBox")
+            {
+                healthPoint -= 8;
+                Debug.Log("Boximon_AttackBox: " + healthPoint);
             }
         }
 
