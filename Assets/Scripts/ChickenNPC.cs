@@ -7,7 +7,10 @@ public class ChickenNPC : NPC
     [SerializeField]
     private GameObject optionsObj;
     [SerializeField]
-    protected DialogController dialogController;
+    private DialogController dialogController;
+    [SerializeField]
+    private GameStageController gameStageController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class ChickenNPC : NPC
 
     public void StartMission() {
         dialogController.FlipDialogPage();
+        gameStageController.SwitchStage();
         Debug.Log("Mission Started");
     }
 
