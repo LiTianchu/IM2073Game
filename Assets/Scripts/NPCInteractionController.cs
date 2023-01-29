@@ -18,14 +18,17 @@ public class NPCInteractionController: MonoBehaviour
     private TextMeshProUGUI nameHintText;
     [SerializeField]
     private TextMeshProUGUI controlHintText;
+    [SerializeField]
+    private AudioClip interactSFX;
     private DialogController dc;
+    private AudioSource audioSource;
     public bool playerAroundNPC { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        audioSource = GetComponent<AudioSource>();
         dc = dialogComponent.GetComponent<DialogController>();
     }
 
@@ -74,6 +77,7 @@ public class NPCInteractionController: MonoBehaviour
            
             if (!pc.isTalking)
             {
+                audioSource.PlayOneShot(interactSFX);
                 pc.isTalking = true;
                 controlHintComponent.SetActive(false);
                

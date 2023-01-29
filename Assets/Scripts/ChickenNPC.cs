@@ -10,10 +10,16 @@ public class ChickenNPC : NPC
     private DialogController dialogController;
     [SerializeField]
     private GameStageController gameStageController;
+    [SerializeField]
+    private AudioClip interactSFX;
+    [SerializeField]
+    private AudioClip declineSFX;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         base.InitNPC();
     }
 
@@ -34,12 +40,14 @@ public class ChickenNPC : NPC
     }
 
     public void StartMission() {
+        audioSource.PlayOneShot(interactSFX);
         dialogController.FlipDialogPage();
         gameStageController.SwitchStage();
         Debug.Log("Mission Started");
     }
 
     public void DialogEnd() {
+        audioSource.PlayOneShot(declineSFX);
         HideOptions();
         dialogController.EndDialog();
     }
