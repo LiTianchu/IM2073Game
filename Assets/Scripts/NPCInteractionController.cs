@@ -76,7 +76,13 @@ public class NPCInteractionController: MonoBehaviour
             {
                 pc.isTalking = true;
                 controlHintComponent.SetActive(false);
+               
                 dialogComponent.SetActive(true);
+                if (dc.dialogNPC.optionPageNo == 0)
+                {
+                    dc.dialogNPC.DisplayOptions();
+                }
+
             }
             else {
                 dc.NextPage();
