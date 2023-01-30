@@ -41,6 +41,7 @@ public class NPCInteractionController: MonoBehaviour
         }
         if (pc.isTalking)
         {
+            controlHintComponent.SetActive(true);
             controlHintText.text = "Continue";
         }
         else {
