@@ -17,26 +17,20 @@ public class PlayerController : MonoBehaviour
     private float gravity;
     [SerializeField]
     private int healthPoint;
-    [SerializeField]
-    private float rotationLockTime;
-
+    
     public bool isTalking { get; set; }
     private CharacterController cc;
     private Rigidbody rb;
     private Vector3 movement;
     private float horizontalLookInput;
     private float verticalLookInput;
-    private float timePassed;
-    private float timeToEnableRotation;
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
-        timePassed = Time.time;
-        timeToEnableRotation = timePassed + rotationLockTime;
     }
 
     // Update is called once per frame
@@ -75,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         //    }
         //}
-        timePassed += Time.deltaTime;
+
         movement.y -= gravity * Time.deltaTime;
         //stop gravity from stacking
         if (cc.isGrounded && movement.y < 0)
@@ -84,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 transformedMovement = transform.TransformDirection(movement);
         cc.Move(new Vector3(transformedMovement.x * walkSpeed * Time.deltaTime,transformedMovement.y * jumpSpeed * Time.deltaTime,transformedMovement.z * walkSpeed*Time.deltaTime));
-        if (timePassed >= timeToEnableRotation && !isTalking)
+        if (!isTalking)
         {
             Vector3 playerRotation = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Euler(new Vector3(playerRotation.x, playerRotation.y + horizontalLookInput * rotateSpeed * Time.deltaTime, playerRotation.z));

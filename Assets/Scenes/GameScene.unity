@@ -693,7 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 350
   rotationAngle: 70
-  rotationLockTime: 1.2
+  rotationLockTime: 2
   pc: {fileID: 1323093130}
 --- !u!114 &50507866
 MonoBehaviour:
@@ -9324,6 +9324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pc: {fileID: 1323093130}
   nextPageClip: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
+  endDialogClip: {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
 --- !u!82 &859271048
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12434,7 +12435,6 @@ MonoBehaviour:
   rotateSpeed: 275
   gravity: 7
   healthPoint: 100
-  rotationLockTime: 1
 --- !u!114 &1323093131
 MonoBehaviour:
   m_ObjectHideFlags: 0
