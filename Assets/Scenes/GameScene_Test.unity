@@ -1793,7 +1793,6 @@ GameObject:
   - component: {fileID: 335842398}
   - component: {fileID: 335842397}
   - component: {fileID: 335842396}
-  - component: {fileID: 335842395}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1819,21 +1818,6 @@ Transform:
   m_Father: {fileID: 1949242368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &335842395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335842393}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdcd06815c47d30489f70df42db56a48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frustumSettings:
-    baseSettings: {fileID: 1635282925}
-    qualitySettings: {fileID: 0}
 --- !u!114 &335842396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5280,6 +5264,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4949147741236930, guid: c5a22f90410bea44487247b0495b56c0, type: 3}
   m_PrefabInstance: {fileID: 1004718912}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1007985705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1925973289615228023, guid: b2eb960863d2c6f47956f7cce4241599, type: 3}
+  m_PrefabInstance: {fileID: 6484276979894482108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238b136dc3c97724a8a042e8ecd8ae60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1079310490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8317,32 +8312,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607458894}
   m_Mesh: {fileID: 4300574, guid: b2c61055c4a01ad43b08434f8178e1c9, type: 3}
---- !u!114 &1635282925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59306422a2ca4454aabce3daa79c3334, type: 3}
-  m_Name: New Aura Base Settings
-  m_EditorClassIdentifier: 
-  useDensity: 1
-  density: 0.25
-  useScattering: 1
-  scattering: 0.5
-  useAmbientLighting: 1
-  ambientLightingStrength: 1
-  useColor: 0
-  color: {r: 0, g: 0.5, b: 0.5, a: 0.5}
-  colorStrength: 1
-  useTint: 0
-  tint: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  tintStrength: 1
-  useExtinction: 0
-  extinction: 0.75
 --- !u!1001 &1640561250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10032,6 +10001,7 @@ MonoBehaviour:
   rotateSpeed: 275
   gravity: 7
   healthPoint: 100
+  _healthBar: {fileID: 1007985705}
 --- !u!114 &1949242363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10125,7 +10095,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 335842400}
 --- !u!54 &1949242364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11875,5 +11845,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6717040831318048385, guid: b2eb960863d2c6f47956f7cce4241599, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717040831318048385, guid: b2eb960863d2c6f47956f7cce4241599, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016054472201144203, guid: b2eb960863d2c6f47956f7cce4241599, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 335842400}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2eb960863d2c6f47956f7cce4241599, type: 3}
