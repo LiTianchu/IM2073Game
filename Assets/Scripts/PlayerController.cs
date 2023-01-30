@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     private float gravity;
     [SerializeField]
     private int healthPoint;
-    
+    [SerializeField]
+    HealthBar _healthBar;
+
     public bool isTalking { get; set; }
     private CharacterController cc;
     private Rigidbody rb;
@@ -126,12 +128,18 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy_Attack")
         {
-            Debug.Log("Enemy_Attack");
             if (collision.gameObject.name == "Spider_Fuga_Red_AttackBox")
             {
-                Debug.Log("Spider_Fuga_Red_AttackBox");
                 healthPoint -= 5;
-                Debug.Log(healthPoint);
+                _healthBar.SetHealth(healthPoint);
+                Debug.Log("Spider_Fuga_Red_AttackBox: " + healthPoint);
+            }
+
+            if (collision.gameObject.name == "Boximon_AttackBox")
+            {
+                healthPoint -= 8;
+                _healthBar.SetHealth(healthPoint);
+                Debug.Log("Boximon_AttackBox: " + healthPoint);
             }
         }
 
