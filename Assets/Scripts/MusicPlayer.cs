@@ -11,6 +11,7 @@ public class MusicPlayer : MonoBehaviour
    
     private void Start()
     {
+        currentClip = musicArray[0];
         BGM.PlayOneShot(musicArray[0]);
     }
     private void Update()
