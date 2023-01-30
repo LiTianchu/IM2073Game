@@ -5,13 +5,23 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-
+   
+  
     [SerializeField]
     private Animator anim;
     [SerializeField]
     private AnimationClip attackClip;
+    [SerializeField]
+    private AudioClip attackSFX;
+    [SerializeField]
+    private float audioPlayAtPercentageOfAnimationClip;
+    [SerializeField]
+    private PlayerController pc;
 
+    private AudioSource audioSource;
     private bool weaponSelected;
+    private float nextAttackingTime;
+    private float atkCoolDown;
     public bool isAttacking;
     //[SerializeField]
     //private int rotationAngle;
@@ -27,8 +37,11 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         weaponHitbox = GetComponent<BoxCollider>();
         weaponHitbox.enabled = false;
+        nextAttackingTime = Time.time;
+        atkCoolDown = attackClip.length + 0.1f;
     }
 
     // Update is called once per frame
@@ -41,6 +54,7 @@ public class WeaponController : MonoBehaviour
         else {
             weaponSelected = false;
         }
+        isAttacking = anim.GetBool("IsAttacking");
         //Vector3 weaponRotation = transform.rotation.eulerAngles;
         //float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
 
@@ -52,8 +66,11 @@ public class WeaponController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && isAttacking==false)
+        if (context.started && !anim.GetBool("IsAttacking") && Time.time>=nextAttackingTime && !pc.isTalking)
         {
+         //   isAttacking = true;
+            
+            nextAttackingTime += atkCoolDown;
             StartCoroutine(PerformAttack());
         }
     }
@@ -85,9 +102,11 @@ public class WeaponController : MonoBehaviour
     IEnumerator PerformAttack()
     {
         anim.SetBool("IsAttacking", true);
-        isAttacking = true;
-        yield return new WaitForSeconds(attackClip.length + 0.1f);
+        
+        yield return new WaitForSeconds(attackClip.length * audioPlayAtPercentageOfAnimationClip);
+        audioSource.PlayOneShot(attackSFX);
+        yield return new WaitForSeconds(attackClip.length * (1-audioPlayAtPercentageOfAnimationClip));
         anim.SetBool("IsAttacking", false);
-        isAttacking = false;
+     //   isAttacking = false;
     }
 }

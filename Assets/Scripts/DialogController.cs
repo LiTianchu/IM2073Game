@@ -9,10 +9,15 @@ public class DialogController : MonoBehaviour
 
     [SerializeField]
     private PlayerController pc;
+    [SerializeField]
+    private AudioClip nextPageClip;
+
+
     public string dialogText { get; set; }
     public NPC dialogNPC { get; set; }
 
     private TextMeshProUGUI tmPro;
+    private AudioSource audioSource;
     private int pgNo;
     private int maxPage;
     // Start is called before the first frame update
@@ -21,6 +26,7 @@ public class DialogController : MonoBehaviour
     {
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         pgNo = dialogNPC.startingDialogPageNo;
+        audioSource = GetComponent<AudioSource>();
         // maxPage = dialogNPC.dialogTextList.Count-1;
         tmPro.text = dialogNPC.dialogTextList[0];
 
@@ -48,6 +54,7 @@ public class DialogController : MonoBehaviour
     {
         if (dialogNPC.optionPageNo != pgNo)
         {
+            audioSource.PlayOneShot(nextPageClip);
             FlipDialogPage();
         }
 
@@ -65,6 +72,7 @@ public class DialogController : MonoBehaviour
         }
         if (pgNo > maxPage)
         {
+            
             EndDialog();
         }
     }
