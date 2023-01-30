@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int healthPoint;
     [SerializeField]
+    private GameStageController gameController;
+    [SerializeField]
     HealthBar _healthBar;
 
     public bool isTalking { get; set; }
@@ -38,39 +40,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (cc.isGrounded)
-        //{
-        //    //doubleJumpAvailable = true;
-        //    timeToStopBeingLenient = Time.time + jumpTimeLeniency;
-        //    //Set the movement direction to be the received input, set y to 0 since we are on the ground
-        //    moveDirection = new Vector3(leftRightInput, 0, forwardBackwardInput);
-
-        //    //Set the move direction in relation to the transform
-        //    moveDirection = transform.TransformDirection(moveDirection);
-        //    moveDirection = moveDirection * moveSpeed;
-
-        //    if (jumpPressed)
-        //    {
-        //        movement.y = jumpPower;
-        //    }
-        //}
-        //else
-        //{
-        //    moveDirection = new Vector3(leftRightInput * moveSpeed, moveDirection.y, forwardBackwardInput * moveSpeed);
-        //    moveDirection = transform.TransformDirection(moveDirection);
-
-        //    //to give time leniency for ungrounded player to jump
-        //    if (jumpPressed && Time.time < timeToStopBeingLenient)
-        //    {
-        //        moveDirection.y = jumpPower;
-        //    }
-        //    else if (jumpPressed && doubleJumpAvailable)
-        //    {
-        //        moveDirection.y = jumpPower;
-        //        doubleJumpAvailable = false;
-
-        //    }
-        //}
+        if (healthPoint <= 0) {
+            gameController.GameOver();
+        }
 
         movement.y -= gravity * Time.deltaTime;
         //stop gravity from stacking
@@ -90,15 +62,18 @@ public class PlayerController : MonoBehaviour
 
     public void Walk(InputAction.CallbackContext context)
     {
-        if (cc.isGrounded)
+        if (!isTalking)
         {
-            movement = context.ReadValue<Vector3>();
+            if (cc.isGrounded)
+            {
+                movement = context.ReadValue<Vector3>();
+            }
+            else
+            {
+                movement = new Vector3(context.ReadValue<Vector3>().x, movement.y, context.ReadValue<Vector3>().z);
+            }
+            //     movement = transform.TransformDirection(movement);
         }
-        else {
-            movement = new Vector3(context.ReadValue<Vector3>().x, movement.y, context.ReadValue<Vector3>().z);
-        }
-        //     movement = transform.TransformDirection(movement);
-
     }
 
     public void Look(InputAction.CallbackContext context)

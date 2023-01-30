@@ -8,6 +8,8 @@ public class Reticle : MonoBehaviour
     private NPCInteractionController npcInteraction;
     [SerializeField]
     private float raycastingDist;
+    [SerializeField]
+    private PlayerController playerController;
     private RaycastHit objectHit;
     
     // Start is called before the first frame update
@@ -24,12 +26,12 @@ public class Reticle : MonoBehaviour
         if (Physics.Raycast(transform.position, fwd,out objectHit, raycastingDist))
         {
             //do somet$$anonymous$$ng if $$anonymous$$t object ie
-            if (objectHit.transform != null)
+            if (objectHit.transform != null && !playerController.isTalking)
             {
                 string layerName = LayerMask.LayerToName(objectHit.transform.gameObject.layer);
                 if (layerName.Equals("NPC"))
                 {
-                    ResetAllInteraction();
+                   // ResetAllInteraction();
                     HandleNPCInteraction(objectHit.transform.gameObject);
                 }
                 else {
