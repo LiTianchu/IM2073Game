@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pc: {fileID: 0}
   nextPageClip: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
+  waveSpawner: {fileID: 0}
 --- !u!82 &1961291386084772362
 AudioSource:
   m_ObjectHideFlags: 0

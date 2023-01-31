@@ -11,12 +11,15 @@ public class GameStageController : MonoBehaviour
     private GameObject pauseMenu;
     [SerializeField]
     private GameObject gameOverScreen;
+   
+    public int numberOfKills { get; set; }
+    public int score { get; set; }
 
-    private int score;
     private bool peacefulStage;
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         peacefulStage = true;
     }
 
@@ -57,6 +60,11 @@ public class GameStageController : MonoBehaviour
 
     public void AddScore(int score) {
         this.score += score;
+    }
+
+    public void AddKill(int kill)
+    {
+        this.numberOfKills += kill;
     }
     public void GameOver() {
         Time.timeScale = 0;
