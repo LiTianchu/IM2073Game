@@ -12,9 +12,9 @@ public class DialogController : MonoBehaviour
     [SerializeField]
     private AudioClip nextPageClip;
 
-    //To call WaveSpawner script and start spawning enemies
-    [SerializeField]
-    WaveSpawner waveSpawner;
+    ////To call WaveSpawner script and start spawning enemies
+    //[SerializeField]
+    //WaveSpawner waveSpawner;
 
     public string dialogText { get; set; }
     public NPC dialogNPC { get; set; }
@@ -28,19 +28,19 @@ public class DialogController : MonoBehaviour
     void Start()
     {
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
-        pgNo = dialogNPC.startingDialogPageNo;
+        pgNo = 0;
         audioSource = GetComponent<AudioSource>();
         // maxPage = dialogNPC.dialogTextList.Count-1;
-        tmPro.text = dialogNPC.dialogTextList[0];
+        tmPro.text = dialogNPC.dialogTextList[dialogNPC.currentPhase].text[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        maxPage = dialogNPC.endingDialogPageNo;
+        maxPage = dialogNPC.dialogTextList[dialogNPC.currentPhase].text.Count;
         if (pgNo <= maxPage)
         {
-            tmPro.text = dialogNPC.dialogTextList[pgNo];
+            tmPro.text = dialogNPC.dialogTextList[dialogNPC.currentPhase].text[pgNo];
         }
         //if (pgNo == dialogNPC.optionPageNo)
         //{
@@ -54,7 +54,7 @@ public class DialogController : MonoBehaviour
 
     public void NextPage()
     {
-        if (dialogNPC.optionPageNo != pgNo)
+        if (dialogNPC.dialogTextList[dialogNPC.currentPhase].optionPageNo != pgNo)
         {
             audioSource.PlayOneShot(nextPageClip);
             FlipDialogPage();
@@ -65,14 +65,14 @@ public class DialogController : MonoBehaviour
     public void FlipDialogPage()
     {
         pgNo++;
-        if (pgNo == dialogNPC.optionPageNo)
+        if (pgNo == dialogNPC.dialogTextList[dialogNPC.currentPhase].optionPageNo)
         {
             dialogNPC.DisplayOptions();
         }
         else {
             dialogNPC.HideOptions(); 
         }
-        if (pgNo > maxPage)
+        if (pgNo > maxPage-1)
         {
             
             EndDialog();
@@ -80,10 +80,10 @@ public class DialogController : MonoBehaviour
     }
     public void EndDialog() {
         pc.isTalking = false;
-        pgNo = dialogNPC.startingDialogPageNo;
-        tmPro.text = dialogNPC.dialogTextList[0];
+        pgNo = 0;
+        tmPro.text = dialogNPC.dialogTextList[dialogNPC.currentPhase].text[0];
         this.gameObject.SetActive(false);
-        waveSpawner.StartSpawning();
+      
     }
 
     //public void DisplayDialogOptions() {

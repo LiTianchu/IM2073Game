@@ -27,6 +27,8 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private int nextWave = 0;
 
+    public ChickenNPC chickenNPC;
+    public GameStageController gameController;
     public Transform[] spawnPoints; //store defined spawnpoints
 
     //timer for timed wave start
@@ -35,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
 
     private float searchCountdown = 1f;
 
-    private State spawnerState = State.Waiting;
+    public State spawnerState = State.Waiting;
 
     void Start()
     {
@@ -135,8 +137,9 @@ public class WaveSpawner : MonoBehaviour
     {
         Debug.Log("Wave Completed");
         spawnerState = State.Waiting;
+        gameController.SwitchMusicStage();
         //waveCountdown = timeBetweenWaves;
-
+        chickenNPC.NextPhase();
         if (nextWave + 1 > waves.Length - 1) //- 1 because nextWave starts from 0 
         {
             nextWave = 0;
