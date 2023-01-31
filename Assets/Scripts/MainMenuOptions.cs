@@ -26,16 +26,10 @@ public class MainMenuOptions : MonoBehaviour, IPointerEnterHandler
     private GameObject creditScreen;
     [SerializeField]
     private GameObject controlScreen;
-    // Start is called before the first frame update
+
     void Start()
     {
         Time.timeScale = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void OnPointerEnter(PointerEventData ped)
@@ -73,6 +67,4 @@ public class MainMenuOptions : MonoBehaviour, IPointerEnterHandler
     {
         controlScreen.SetActive(false);
     }
-
-
 }

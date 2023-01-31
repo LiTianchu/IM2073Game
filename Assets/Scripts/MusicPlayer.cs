@@ -6,11 +6,11 @@ public class MusicPlayer : MonoBehaviour
 {
     public AudioSource BGM;
     public AudioClip[] musicArray;
-
     private AudioClip currentClip;
    
     private void Start()
     {
+        currentClip = musicArray[0];
         BGM.PlayOneShot(musicArray[0]);
     }
     private void Update()

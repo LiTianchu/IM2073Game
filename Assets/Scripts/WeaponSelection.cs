@@ -14,26 +14,6 @@ public class WeaponSelection : MonoBehaviour
     [SerializeField]
     private int currentSelectedIndex;
 
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //for (int i = 0; i < weaponObjs.Count; i++) {
-        //    if (i == currentSelectedIndex)
-        //    {
-        //        weaponIconObjs[i].GetComponent<Icon>().SetEnable(true);
-        //        weaponObjs[i].SetActive(true);
-        //    }
-        //    else {
-        //        weaponIconObjs[i].GetComponent<Icon>().SetEnable(false);
-        //        weaponObjs[i].SetActive(false);
-        //    }
-        //}
-    }
-
-    // Update is called once per frame
     void Update()
     {
         for (int i = 0; i < weaponObjs.Count; i++)

@@ -18,18 +18,11 @@ public class GameStageController : MonoBehaviour
     public int score { get; set; }
 
     private bool peacefulStage;
-    // Start is called before the first frame update
+
     void Start()
     {
         score = 0;
         peacefulStage = true;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void SwitchMusicStage() {
@@ -43,13 +36,13 @@ public class GameStageController : MonoBehaviour
             peacefulStage = true;
             Debug.Log("Peace Stage");
         }
-   
     }
 
     public void PauseGame() {
      Time.timeScale = 0;
         pauseMenu.SetActive(true);
     }
+
    public void ResumeGame()
     {
         Time.timeScale = 1;
@@ -69,10 +62,12 @@ public class GameStageController : MonoBehaviour
     {
         this.numberOfKills += kill;
     }
+
     public void GameOver() {
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
     }
+
     public void GameCompleted() {
         Time.timeScale = 0;
         gameSuccessScreen.SetActive(true);

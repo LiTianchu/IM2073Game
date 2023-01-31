@@ -15,12 +15,17 @@ public class ChickenNPC : NPC
     [SerializeField]
     private AudioClip declineSFX;
     [SerializeField]
+    private AudioClip hitSFX;
+    [SerializeField]
     private AudioClip missionSuccessSFX;
     [SerializeField]
     private WaveSpawner spawnerManager;
+    [SerializeField]
+    private int healthPoint;
     private AudioSource audioSource;
+    [SerializeField]
+    HealthBar _healthBar;
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -31,6 +36,11 @@ public class ChickenNPC : NPC
     void Update()
     {
         base.UpdateNPC();
+
+        if (healthPoint <= 0)
+        {
+            gameStageController.GameOver();
+        }
     }
 
     public override void DisplayOptions()
@@ -46,7 +56,6 @@ public class ChickenNPC : NPC
                 child.gameObject.SetActive(false);
             }
         }
-        
     }
 
     public override void HideOptions()
@@ -82,5 +91,35 @@ public class ChickenNPC : NPC
         }
     }
 
-    
+    // On being hit by enemies
+    bool isColliding; // To prevent multiple OnTriggerEnter in one instance
+    void OnTriggerEnter(Collider collision)
+    {
+        if (isColliding == true) return;
+        isColliding = true;
+
+        if (collision.gameObject.tag == "Enemy_Attack")
+        {
+            if (collision.gameObject.name == "Spider_Fuga_Red_AttackBox")
+            {
+                healthPoint -= 5;
+                _healthBar.SetHealth(healthPoint);
+            }
+
+            if (collision.gameObject.name == "Boximon_AttackBox")
+            {
+                healthPoint -= 8;
+                _healthBar.SetHealth(healthPoint);
+            }
+            audioSource.PlayOneShot(hitSFX);
+        }
+
+        StartCoroutine(Reset());
+    }
+    // Used in preventing multiple OnTriggerEnter in one instance
+    IEnumerator Reset()
+    {
+        yield return new WaitForEndOfFrame();
+        isColliding = false;
+    }
 }

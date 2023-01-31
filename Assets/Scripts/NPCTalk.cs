@@ -13,27 +13,13 @@ public class NPCTalk : MonoBehaviour
     private GameObject controlHintComponent;
     [SerializeField]
     private PlayerController pc;
- 
-
     private DialogController dc;
-
-
-
    
     private bool playerAround;
     // Start is called before the first frame update
     void Start()
     {
-
-     
         dc = dialogComponent.GetComponent<DialogController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
     }
 
     public void ShowDialogOptionOnScreen(GameObject npcObj) {
@@ -41,7 +27,6 @@ public class NPCTalk : MonoBehaviour
         {
             controlHintComponent.SetActive(true);
             dc.dialogNPC = npcObj.GetComponent<NPC>();
-            
         }
         else {
             HideDialogOption();

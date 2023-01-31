@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ScorePoint : MonoBehaviour
 {
-   
     private GameStageController gameController;
     [SerializeField]
     private int carriedScore;
     private bool scoreAdded;
     private Animator animator;
-    // Start is called before the first frame update
+
     void Start()
     {
         scoreAdded = false;
@@ -18,7 +17,6 @@ public class ScorePoint : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!scoreAdded && (animator.GetBool("Die") || animator.GetBool("IsDead")))
@@ -26,14 +24,5 @@ public class ScorePoint : MonoBehaviour
             gameController.AddScore(carriedScore);
             scoreAdded = true;
         }
-    }
-    private void OnDestroy()
-    {
-        //gameController = GameObject.Find("Canvas").transform.GetComponent<GameStageController>();
-        //Animator animator = GetComponent<Animator>();
-        //if (animator.GetBool("Die") || animator.GetBool("IsDead")) {
-        //    gameController.AddScore(carriedScore);
-        //}
-       
     }
 }

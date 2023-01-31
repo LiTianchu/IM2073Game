@@ -39,8 +39,6 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
     private float nextFootStepTime;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +47,6 @@ public class PlayerController : MonoBehaviour
         nextFootStepTime = Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (healthPoint <= 0) {
@@ -57,7 +54,7 @@ public class PlayerController : MonoBehaviour
         }
 
         movement.y -= gravity * Time.deltaTime;
-        //stop gravity from stacking
+        //Stop gravity from stacking
         if (cc.isGrounded && movement.y < 0)
         {
             movement.y = -0.3f;
@@ -75,7 +72,6 @@ public class PlayerController : MonoBehaviour
             Vector3 playerRotation = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Euler(new Vector3(playerRotation.x, playerRotation.y + horizontalLookInput * rotateSpeed * Time.deltaTime, playerRotation.z));
         }
-        //  movement = transform.TransformDirection(movement);
     }
 
     public void Walk(InputAction.CallbackContext context)
@@ -90,20 +86,13 @@ public class PlayerController : MonoBehaviour
             {
                 movement = new Vector3(context.ReadValue<Vector3>().x, movement.y, context.ReadValue<Vector3>().z);
             }
-            //     movement = transform.TransformDirection(movement);
         }
     }
 
     public void Look(InputAction.CallbackContext context)
     {
-
-        //   Debug.Log(context.ReadValue<Vector2>());
-
         horizontalLookInput = context.ReadValue<Vector2>().x;
         verticalLookInput = context.ReadValue<Vector2>().y;
-        //  movement = transform.TransformDirection(movement);
-
-
     }
 
     public void Jump(InputAction.CallbackContext context) {
@@ -137,7 +126,6 @@ public class PlayerController : MonoBehaviour
             }
             audioSource.PlayOneShot(hitSFX);
         }
-
         StartCoroutine(Reset());
     }
 
@@ -151,5 +139,4 @@ public class PlayerController : MonoBehaviour
     private void FootStep() {
         audioSource.PlayOneShot(footstepSFX);
     }
-
 }
