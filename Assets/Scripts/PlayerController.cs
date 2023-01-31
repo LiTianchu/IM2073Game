@@ -14,9 +14,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rotateSpeed;
     [SerializeField]
+    private float footstepIntervalTime;
+    [SerializeField]
     private float gravity;
     [SerializeField]
     private int healthPoint;
+    [SerializeField]
+    private AudioClip footstepSFX;
+    [SerializeField]
+    private AudioClip hitSFX;
+    [SerializeField]
+    private AudioClip jumpSFX;
     [SerializeField]
     private GameStageController gameController;
     [SerializeField]
@@ -28,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private float horizontalLookInput;
     private float verticalLookInput;
+    private AudioSource audioSource;
+    private float nextFootStepTime;
     
 
     // Start is called before the first frame update
@@ -35,6 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
+        nextFootStepTime = Time.time;
     }
 
     // Update is called once per frame
@@ -50,8 +62,14 @@ public class PlayerController : MonoBehaviour
         {
             movement.y = -0.3f;
         }
+
         Vector3 transformedMovement = transform.TransformDirection(movement);
+        if ((transformedMovement.x != 0 || transformedMovement.z != 0 ) && Time.time>=nextFootStepTime && cc.isGrounded) {
+            FootStep();
+            nextFootStepTime = Time.time+footstepIntervalTime;
+        }
         cc.Move(new Vector3(transformedMovement.x * walkSpeed * Time.deltaTime,transformedMovement.y * jumpSpeed * Time.deltaTime,transformedMovement.z * walkSpeed*Time.deltaTime));
+        
         if (!isTalking)
         {
             Vector3 playerRotation = transform.rotation.eulerAngles;
@@ -91,6 +109,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context) {
         if (context.performed && cc.isGrounded) {
             movement.y = jumpPower;
+            audioSource.PlayOneShot(jumpSFX);
         }
     }
 
@@ -116,6 +135,7 @@ public class PlayerController : MonoBehaviour
                 _healthBar.SetHealth(healthPoint);
                 Debug.Log("Boximon_AttackBox: " + healthPoint);
             }
+            audioSource.PlayOneShot(hitSFX);
         }
 
         StartCoroutine(Reset());
@@ -127,4 +147,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isColliding = false;
     }
+
+    private void FootStep() {
+        audioSource.PlayOneShot(footstepSFX);
+    }
+
 }

@@ -70,7 +70,7 @@ public class WeaponController : MonoBehaviour
         {
          //   isAttacking = true;
             
-            nextAttackingTime += atkCoolDown;
+            nextAttackingTime =Time.time+ atkCoolDown;
             StartCoroutine(PerformAttack());
         }
     }

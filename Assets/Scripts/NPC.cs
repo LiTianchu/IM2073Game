@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    [System.Serializable]
+    public class Conversation
+    {
+        public List<string> text;
+        public int phaseNo;
+        public int optionPageNo;
+        public List<GameObject> option;
+
+    }
+
     [SerializeField]
     private LayerMask playerLayer;
     [SerializeField]
-    public List<string> dialogTextList;
+    public List<Conversation> dialogTextList;
     [SerializeField]
     private NPCInteractionController npcController;
+    //[SerializeField]
+    //public int startingDialogPageNo;
+    //[SerializeField]
+    //public int endingDialogPageNo;
+    //[SerializeField]
+    //public int optionPageNo;
     [SerializeField]
-    public int startingDialogPageNo;
-    [SerializeField]
-    public int endingDialogPageNo;
-    [SerializeField]
-    public int optionPageNo;
+    public int currentPhase;
 
     private BoxCollider npcCollider;
     // Start is called before the first frame update

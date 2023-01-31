@@ -20,8 +20,11 @@ public class NPCInteractionController: MonoBehaviour
     private TextMeshProUGUI controlHintText;
     [SerializeField]
     private AudioClip interactSFX;
+    [SerializeField]
+    private WaveSpawner spawnManager;
     private DialogController dc;
     private AudioSource audioSource;
+ 
     public bool playerAroundNPC { get; set; }
 
     // Start is called before the first frame update
@@ -52,7 +55,7 @@ public class NPCInteractionController: MonoBehaviour
 
     public void ShowDialogOptionOnScreen(GameObject npcObj)
     {
-        if (playerAroundNPC)
+        if (playerAroundNPC && spawnManager.spawnerState == WaveSpawner.State.Waiting)
         {
             controlHintComponent.SetActive(true);
             dc.dialogNPC = npcObj.GetComponent<NPC>();
@@ -83,7 +86,7 @@ public class NPCInteractionController: MonoBehaviour
                 controlHintComponent.SetActive(false);
                
                 dialogComponent.SetActive(true);
-                if (dc.dialogNPC.optionPageNo == 0)
+                if (dc.dialogNPC.dialogTextList[dc.dialogNPC.currentPhase].optionPageNo == 0)
                 {
                     dc.dialogNPC.DisplayOptions();
                 }
