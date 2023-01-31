@@ -1189,7 +1189,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 1
+  m_Speed: 1.5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1576,7 +1576,7 @@ MonoBehaviour:
         x: 402
         y: 100
         width: 180.4
-        height: 32
+        height: 80
       isBreakpoint: 0
       isSequence: 0
       hideUnused: 0
@@ -1590,21 +1590,54 @@ MonoBehaviour:
         linkConstraint: 0
         linkTarget: 0
         colorIndex: 0
+      - fsmEvent:
+          name: Hit By Axe
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Axe Damage
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Hit By Hammer
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Hammer Damage
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: Hit By Sword
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Sword Damage
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.FindGameObject
         - HutongGames.PlayMaker.Actions.FindGameObject
         - HutongGames.PlayMaker.Actions.SetAgentDestinationAsGameObject
         - HutongGames.PlayMaker.Actions.BoolAllTrue
+        - HutongGames.PlayMaker.Actions.TriggerEvent
+        - HutongGames.PlayMaker.Actions.TriggerEvent
+        - HutongGames.PlayMaker.Actions.TriggerEvent
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 01010101
-        actionIsOpen: 01010101
-        actionStartIndex: 00000000030000000600000009000000
-        actionHashCodes: 786b3902786b3902f0eeac0180768705
+        - 
+        - 
+        - 
+        actionEnabled: 01010101010101
+        actionIsOpen: 01010101010101
+        actionStartIndex: 0000000003000000060000000900000010000000150000001a000000
+        actionHashCodes: 786b3902786b3902f0eeac01807687059c5124009c5124009c512400
         unityObjectParams: []
         fsmGameObjectParams:
         - useVariable: 1
@@ -1625,6 +1658,24 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: {fileID: 0}
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {fileID: 0}
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {fileID: 0}
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {fileID: 0}
         fsmOwnerDefaultParams:
         - ownerOption: 0
           gameObject:
@@ -1634,6 +1685,30 @@ MonoBehaviour:
             showInInspector: 0
             networkSync: 0
             value: {fileID: 0}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 2685037225627970398}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 2685037225627970398}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 2685037225627970398}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -1665,6 +1740,24 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: Player
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Weapon_Axe
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Weapon_Hammer
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Weapon_Sword
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -1709,13 +1802,16 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - Player Detected
-        byteData: 01
+        - Hit By Axe
+        - Hit By Hammer
+        - Hit By Sword
+        byteData: 01000000000000000000000000
         arrayParamSizes: 03000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmBool
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 12000000120000001300000012000000120000001300000014000000130000000f0000000c000000110000001100000011000000170000001100000001000000
+        paramDataType: 12000000120000001300000012000000120000001300000014000000130000000f0000000c000000110000001100000011000000170000001100000001000000140000000700000012000000170000001300000014000000070000001200000017000000130000001400000007000000120000001700000013000000
         paramName:
         - objectName
         - withTag
@@ -1733,15 +1829,30 @@ MonoBehaviour:
         - sendEvent
         - storeResult
         - everyFrame
-        paramDataPos: 00000000010000000000000002000000030000000100000000000000020000000000000000000000000000000100000002000000000000000300000000000000
-        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000
+        - gameObject
+        - trigger
+        - collideTag
+        - sendEvent
+        - storeCollider
+        - gameObject
+        - trigger
+        - collideTag
+        - sendEvent
+        - storeCollider
+        - gameObject
+        - trigger
+        - collideTag
+        - sendEvent
+        - storeCollider
+        paramDataPos: 00000000010000000000000002000000030000000100000000000000020000000000000000000000000000000100000002000000000000000300000000000000010000000100000004000000010000000300000002000000050000000500000002000000040000000300000009000000060000000300000005000000
+        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000400000000000000000000000000000000000000040000000000000000000000000000000000000004000000000000000000000000000000
     - name: Chase Player
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 445.9453
-        y: 171.04688
+        x: 425.91406
+        y: 201.61719
         width: 134
         height: 96
       isBreakpoint: 0
@@ -1984,7 +2095,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 2
+          value: 2.5
         - useVariable: 0
           name: 
           tooltip: 
@@ -4529,5 +4640,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1, z: 0.7}
-  m_Center: {x: 5.0411064e-10, y: 0, z: -0.18}
+  m_Size: {x: 0.8, y: 1, z: 0.46647456}
+  m_Center: {x: 0.0000000020989661, y: 0, z: -0.2967625}

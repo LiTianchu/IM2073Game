@@ -12,6 +12,9 @@ public class DialogController : MonoBehaviour
     [SerializeField]
     private AudioClip nextPageClip;
 
+    //To call WaveSpawner script and start spawning enemies
+    [SerializeField]
+    WaveSpawner waveSpawner;
 
     public string dialogText { get; set; }
     public NPC dialogNPC { get; set; }
@@ -29,7 +32,6 @@ public class DialogController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         // maxPage = dialogNPC.dialogTextList.Count-1;
         tmPro.text = dialogNPC.dialogTextList[0];
-
     }
 
     // Update is called once per frame
@@ -81,6 +83,7 @@ public class DialogController : MonoBehaviour
         pgNo = dialogNPC.startingDialogPageNo;
         tmPro.text = dialogNPC.dialogTextList[0];
         this.gameObject.SetActive(false);
+        waveSpawner.StartSpawning();
     }
 
     //public void DisplayDialogOptions() {
