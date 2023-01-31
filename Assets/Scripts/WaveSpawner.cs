@@ -11,8 +11,6 @@ public class WaveSpawner : MonoBehaviour
     {
         public string waveName;
         public EnemyType[] enemy;
-        //public Transform[] enemy;
-        //public int[] count;
         public float spawnTime;
         public float spawnRate;
     }
@@ -25,16 +23,11 @@ public class WaveSpawner : MonoBehaviour
     }
     
     public Wave[] waves;
-    private int nextWave = 0;
-
     public ChickenNPC chickenNPC;
     public GameStageController gameController;
     public Transform[] spawnPoints; //store defined spawnpoints
 
-    //timer for timed wave start
-    //public float timeBetweenWaves = 5f;
-    //private float waveCountdown;
-
+    private int nextWave = 0;
     private float searchCountdown = 1f;
 
     public State spawnerState = State.Waiting;
@@ -46,8 +39,6 @@ public class WaveSpawner : MonoBehaviour
         {
             Debug.Log("ERROR: No spawn points referenced.");
         }
-
-        //waveCountdown = timeBetweenWaves;
     }
 
     void Update()
@@ -65,18 +56,6 @@ public class WaveSpawner : MonoBehaviour
                 return;
             }
         }
-
-        /*if (waveCountdown <= 0)
-        {
-            if (spawnerState != State.Spawning)
-            {
-                StartCoroutine(SpawnWave(waves[nextWave]));
-            }
-        }
-        else
-        {
-            waveCountdown -= Time.deltaTime;
-        }*/
     }
 
     //Check for Enemies
@@ -100,10 +79,6 @@ public class WaveSpawner : MonoBehaviour
         {
             Debug.Log("StartSpawning is called.");
             StartCoroutine(SpawnWave(waves[nextWave]));
-            /*if(nextWave + 1 > waves.Length - 1)
-            {
-                StartCoroutine(SpawnWave(waves[nextWave]));
-            }*/
         }
     }
 
@@ -118,10 +93,7 @@ public class WaveSpawner : MonoBehaviour
                 yield return new WaitForSeconds(_wave.spawnTime / _wave.spawnRate); //wait for certain time until spawn enemy again
             }
         }
-        
-
         spawnerState = State.PlayerFighting;
-
         yield break;
     }
 
@@ -138,7 +110,6 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Wave Completed");
         spawnerState = State.Waiting;
         gameController.SwitchMusicStage();
-        //waveCountdown = timeBetweenWaves;
         chickenNPC.NextPhase();
         if (nextWave + 1 > waves.Length - 1) //- 1 because nextWave starts from 0 
         {

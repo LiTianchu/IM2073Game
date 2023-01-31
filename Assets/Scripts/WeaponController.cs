@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-   
-  
     [SerializeField]
     private Animator anim;
     [SerializeField]
@@ -19,32 +17,29 @@ public class WeaponController : MonoBehaviour
     private PlayerController pc;
 
     private AudioSource audioSource;
+    public GameObject bloodParticleSystem;
+    private ContactPoint contactPoint;
+    private Quaternion cPointRotation;
     private bool weaponSelected;
     private float nextAttackingTime;
     private float atkCoolDown;
     public bool isAttacking;
-    //[SerializeField]
-    //private int rotationAngle;
-    //[SerializeField]
-    //private float rotateSpeed;
-
-    //private float verticalLookInput;
-
 
     // Storing hitbox collider
     public BoxCollider weaponHitbox;
+    public CapsuleCollider weaponCollider;
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         weaponHitbox = GetComponent<BoxCollider>();
+        weaponCollider = GetComponent<CapsuleCollider>();
         weaponHitbox.enabled = false;
+        weaponCollider.enabled = false;
         nextAttackingTime = Time.time;
         atkCoolDown = attackClip.length + 0.1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (this.gameObject.activeSelf)
@@ -55,22 +50,13 @@ public class WeaponController : MonoBehaviour
             weaponSelected = false;
         }
         isAttacking = anim.GetBool("IsAttacking");
-        //Vector3 weaponRotation = transform.rotation.eulerAngles;
-        //float angle = transform.rotation.eulerAngles.x - verticalLookInput * rotateSpeed * Time.deltaTime;
-
-        //if (angle >= 360 - rotationAngle || angle <= 0 + rotationAngle)
-        //{
-        //    transform.rotation = Quaternion.Euler(new Vector3(weaponRotation.x - verticalLookInput * rotateSpeed * Time.deltaTime, weaponRotation.y, weaponRotation.z));
-        //}
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.started && !anim.GetBool("IsAttacking") && Time.time>=nextAttackingTime && !pc.isTalking)
         {
-         //   isAttacking = true;
-            
-            nextAttackingTime =Time.time+ atkCoolDown;
+            nextAttackingTime = Time.time+ atkCoolDown;
             StartCoroutine(PerformAttack());
         }
     }
@@ -79,25 +65,15 @@ public class WeaponController : MonoBehaviour
     void Attacking()
     {
         weaponHitbox.enabled = true;
+        weaponCollider.enabled = true;
     }
 
     // Attack anim disable hitbox
     void Stop_Attacking()
     {
         weaponHitbox.enabled = false;
+        weaponCollider.enabled = false;
     }
-
-    //public void Look(InputAction.CallbackContext context)
-    //{
-
-    //    //   Debug.Log(context.ReadValue<Vector2>());
-
-    //    // horizontalLookInput = context.ReadValue<Vector2>().x;
-    //    verticalLookInput = context.ReadValue<Vector2>().y;
-    //    //  movement = transform.TransformDirection(movement);
-
-
-    //}
 
     IEnumerator PerformAttack()
     {
@@ -107,6 +83,19 @@ public class WeaponController : MonoBehaviour
         audioSource.PlayOneShot(attackSFX);
         yield return new WaitForSeconds(attackClip.length * (1-audioPlayAtPercentageOfAnimationClip));
         anim.SetBool("IsAttacking", false);
-     //   isAttacking = false;
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("There is collision.");
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Instantiating particle.");
+
+            contactPoint = other.GetContact(0);
+            cPointRotation = Quaternion.FromToRotation(Vector3.up, contactPoint.normal);
+            var bloodEffect = Instantiate(bloodParticleSystem, contactPoint.point, cPointRotation);
+
+            Destroy(bloodEffect, 0.4f);
+        }
     }
 }

@@ -11,11 +11,6 @@ public class Icon : MonoBehaviour
     private Color disabledColor;
     [SerializeField]
     private Color enabledColor;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,6 +27,4 @@ public class Icon : MonoBehaviour
     public void SetEnable(bool enabled) {
         this.selected = enabled;
     }
-
-    
 }

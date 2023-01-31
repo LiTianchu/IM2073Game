@@ -24,18 +24,15 @@ public class NPCInteractionController: MonoBehaviour
     private WaveSpawner spawnManager;
     private DialogController dc;
     private AudioSource audioSource;
- 
+
     public bool playerAroundNPC { get; set; }
 
-    // Start is called before the first frame update
     void Start()
     {
-
         audioSource = GetComponent<AudioSource>();
         dc = dialogComponent.GetComponent<DialogController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (dc.dialogNPC != null)
@@ -50,7 +47,6 @@ public class NPCInteractionController: MonoBehaviour
         else {
             controlHintText.text = "Talk";
         }
-
     }
 
     public void ShowDialogOptionOnScreen(GameObject npcObj)
@@ -59,7 +55,6 @@ public class NPCInteractionController: MonoBehaviour
         {
             controlHintComponent.SetActive(true);
             dc.dialogNPC = npcObj.GetComponent<NPC>();
-
         }
         else
         {
@@ -70,32 +65,26 @@ public class NPCInteractionController: MonoBehaviour
     public void HideDialogOption()
     {
         controlHintComponent.SetActive(false);
-       // dc.dialogNPC = null;
     }
 
     public void Talk(InputAction.CallbackContext context)
     {
         if (context.performed && controlHintComponent.activeSelf)
         {
-          //  hintText = controlHintComponent.GetComponentInChildren<TextMeshProUGUI>();
-           
             if (!pc.isTalking)
             {
                 audioSource.PlayOneShot(interactSFX);
                 pc.isTalking = true;
                 controlHintComponent.SetActive(false);
-               
                 dialogComponent.SetActive(true);
                 if (dc.dialogNPC.dialogTextList[dc.dialogNPC.currentPhase].optionPageNo == 0)
                 {
                     dc.dialogNPC.DisplayOptions();
                 }
-
             }
             else {
                 dc.NextPage();
             }
-         
         }
     }
 }

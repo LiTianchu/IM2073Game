@@ -11,7 +11,6 @@ public class NPC : MonoBehaviour
         public int phaseNo;
         public int optionPageNo;
         public List<GameObject> option;
-
     }
 
     [SerializeField]
@@ -20,18 +19,10 @@ public class NPC : MonoBehaviour
     public List<Conversation> dialogTextList;
     [SerializeField]
     private NPCInteractionController npcController;
-    //[SerializeField]
-    //public int startingDialogPageNo;
-    //[SerializeField]
-    //public int endingDialogPageNo;
-    //[SerializeField]
-    //public int optionPageNo;
     [SerializeField]
     public int currentPhase;
 
     private BoxCollider npcCollider;
-    // Start is called before the first frame update
-   
 
     public void InitNPC() {
         npcCollider = GetComponent<BoxCollider>();
@@ -39,11 +30,11 @@ public class NPC : MonoBehaviour
 
     public void UpdateNPC() {
         Collider[] colliders = Physics.OverlapBox(npcCollider.bounds.center, npcCollider.bounds.extents * 2.6f, Quaternion.identity, playerLayer);
-
         npcController.playerAroundNPC = colliders.Length > 0;
     }
 
-    public virtual void DisplayOptions() { 
+    public virtual void DisplayOptions() 
+    { 
     
     }
 
