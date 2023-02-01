@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//IM2073 Project
 public class HealthBar : MonoBehaviour
 {
     Slider _healthSlider;
@@ -23,3 +23,4 @@ public class HealthBar : MonoBehaviour
         _healthSlider.value = health;
     }
 }
+//End Code

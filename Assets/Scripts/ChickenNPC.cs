@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class ChickenNPC : NPC
 {
     [SerializeField]
@@ -122,4 +122,4 @@ public class ChickenNPC : NPC
         yield return new WaitForEndOfFrame();
         isColliding = false;
     }
-}
+}//End Code

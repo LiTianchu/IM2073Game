@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
+//IM2073 Project
 public class MainMenuOptions : MonoBehaviour, IPointerEnterHandler
 {
     private enum SceneType
@@ -68,3 +68,4 @@ public class MainMenuOptions : MonoBehaviour, IPointerEnterHandler
         controlScreen.SetActive(false);
     }
 }
+//End Code

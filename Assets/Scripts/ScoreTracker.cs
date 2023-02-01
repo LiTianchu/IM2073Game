@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+//IM2073 Project
 public class ScoreTracker : MonoBehaviour
 {
     [SerializeField]
@@ -19,3 +19,4 @@ public class ScoreTracker : MonoBehaviour
         tmPro.text = gameController.score + "";
     }
 }
+//End Code

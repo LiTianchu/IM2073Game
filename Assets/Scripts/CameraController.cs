@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//IM2073 Project
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
@@ -47,3 +48,4 @@ public class CameraController : MonoBehaviour
         }
     }
 }
+//End Code

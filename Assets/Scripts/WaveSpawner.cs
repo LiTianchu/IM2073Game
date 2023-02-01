@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class WaveSpawner : MonoBehaviour
 {
     public enum State { Spawning, PlayerFighting, Waiting};
@@ -122,3 +122,4 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 }
+//End Code

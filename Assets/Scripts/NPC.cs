@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class NPC : MonoBehaviour
 {
     [System.Serializable]
@@ -43,3 +43,4 @@ public class NPC : MonoBehaviour
 
     }
 }
+//End Code
