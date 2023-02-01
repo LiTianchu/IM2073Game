@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//IM2073 Project
 public class GameStageController : MonoBehaviour
 {
     [SerializeField]
@@ -73,3 +73,4 @@ public class GameStageController : MonoBehaviour
         gameSuccessScreen.SetActive(true);
     }
 }
+//End Code

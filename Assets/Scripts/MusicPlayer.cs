@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class MusicPlayer : MonoBehaviour
 {
     public AudioSource BGM;
@@ -27,3 +27,4 @@ public class MusicPlayer : MonoBehaviour
         BGM.PlayOneShot(currentClip,0.5f);
     }
 }
+//End Code

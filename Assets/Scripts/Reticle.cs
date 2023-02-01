@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class Reticle : MonoBehaviour
 {
     [SerializeField]
@@ -39,3 +39,4 @@ public class Reticle : MonoBehaviour
         npcInteraction.HideDialogOption();
     }
 }
+//End Code

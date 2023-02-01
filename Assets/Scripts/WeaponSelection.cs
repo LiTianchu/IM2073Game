@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//IM2073 Project
 public class WeaponSelection : MonoBehaviour
 {
     [SerializeField]
@@ -52,3 +52,4 @@ public class WeaponSelection : MonoBehaviour
         }
     }
 }
+//End Code

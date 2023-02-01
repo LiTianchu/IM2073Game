@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+//IM2073 Project
 public class DialogController : MonoBehaviour
 {
     [SerializeField]
@@ -67,3 +67,4 @@ public class DialogController : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 }
+//End Code

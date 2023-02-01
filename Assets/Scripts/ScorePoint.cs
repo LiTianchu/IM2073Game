@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//IM2073 Project
 public class ScorePoint : MonoBehaviour
 {
     private GameStageController gameController;
@@ -26,3 +26,4 @@ public class ScorePoint : MonoBehaviour
         }
     }
 }
+//End Code

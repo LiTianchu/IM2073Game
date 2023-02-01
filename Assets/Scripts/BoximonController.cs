@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//IM2073 Project
 public class BoximonController : MonoBehaviour
 {
     public GameObject boximonAttackBoxGameObject;
@@ -23,3 +24,4 @@ public class BoximonController : MonoBehaviour
         boximonAttackBox.enabled = false;
     }
 }
+//End Code
